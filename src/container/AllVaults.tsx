@@ -56,7 +56,7 @@ const AllVaults = () => {
   const [firstConnect, setFirstConnect] = useState(false);
   const [isApproved, setApproved] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState('')
+  // const [error, setError] = useState('')
   const [winningPools, setWinningPools] = useState('')
   const [winner, setWinner] = useState([])
 
