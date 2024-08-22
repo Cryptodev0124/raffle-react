@@ -1,0 +1,128 @@
+.App {
+    height: 100vh;
+    // display: flex;
+    @media screen and (max-width: 1600px) {
+        flex-direction: column;
+    }
+    .HeaderContainer {
+        border: 0px solid #fff;
+        padding: 1rem 1.5rem 0 1.5rem;
+        margin: 0 auto;
+        max-width: 646px;
+        height: 550px;
+        border-radius: 2rem;
+        transition: 0.7s ease-in-out;
+        background: linear-gradient(#234e5a, #47656c) padding-box, linear-gradient(#FFFFFF 10%, #00A8C5 100%, #00A8C5 51%, #FFFFFF 8%) border-box;
+        border: 1px solid #0000;
+        box-shadow: 0px 4px 24px 1px rgba(35, 16, 94, 0.25);
+        backdrop-filter: blur(45px);
+        border-radius: 40px;
+        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.09), 0px 4px 8px rgba(0, 0, 0, 0.08), 0px 16px 24px rgba(0, 0, 0, 0.08), 0px 24px 32px rgba(0, 0, 0, 0.09);
+        &:hover {
+            transform: scale(1);
+            cursor: default;
+        }
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            letter-spacing: 1px;
+            letter-spacing: 2px;
+            color: #002a57;
+            line-height: 0rem;
+        }
+    }
+    .Introduction {
+        width: auto;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 48px;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 500;
+        @media screen and (max-width: 1024px) {
+            font-size: 36px;
+        }
+    }
+    .Line1 {
+        color: #ffffff;
+    }
+    .Line2 {
+        display: flex;
+        // @media screen and (max-width: 430px) {
+        //     flex-direction: column;
+        // }
+    }
+    .ChangeableText {
+        background: linear-gradient(73.6deg, #072af0 2.11%, #3a65f3);
+        background-clip: text;
+        color: transparent;
+        display: inline-block;
+        // text-align: right;
+        margin-right: 10px;
+    }
+    .Line2Tail {
+        color: #ffffff;
+    }
+    .heroBackground {
+        .bgEllipse1 {
+            height: 60.47rem;
+            left: -0.1rem;
+            width: 57.12rem;
+            position: absolute;
+            top: -0.1rem;
+            z-index: -2;
+            @media screen and (max-width: 375px) {
+                height: 100%;
+                width: 100%;
+            }
+            @media screen and (max-width: 768px) {
+                height: 32.47rem;
+                width: 22.12rem;
+            }
+        }
+        .bgEllipse1 img {
+            height: 100%;
+            width: 100%;
+        }
+        .bgEllipse2 {
+            height: 60.42rem;
+            right: -0.1rem;
+            width: 39.93rem;
+            position: absolute;
+            top: -0.1rem;
+            z-index: -2;
+            @media screen and (max-width: 375px) {
+                height: 100%;
+                width: 100%;
+            }
+        }
+        .bgEllipse2 img {
+            height: 100%;
+            width: 100%;
+        }
+        .bgCircles {
+            height: 5.79rem;
+            left: 0;
+            position: absolute;
+            top: 0;
+            transform-origin: top left;
+            width: 9.03rem;
+            z-index: -1;
+        }
+        .bgCircles img {
+            display: block;
+            @media screen and (max-width: 540px) {
+                height: 300px;
+                width: 300px;
+            }
+        }
+    }
+    .lazyLoaded {
+        opacity: 1;
+        transition: opacity 0.4s ease;
+    }
+}

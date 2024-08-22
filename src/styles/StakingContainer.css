@@ -1,0 +1,894 @@
+.HeaderContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: rgb(0 0 0 / 10%) 0px 0px 8px;
+    position: relative;
+}
+
+.HeaderLine {
+    width: 80%;
+    display: flex;
+    margin: auto;
+    margin-bottom: 10px;
+    height: 1px;
+    margin-top: 10px;
+    background-color: transparent;
+    background-image: radial-gradient(circle, #579250 0, transparent 100%);
+}
+
+
+.bnbPoolContentLine {
+    width: 100%;
+    display: flex;
+    margin: auto;
+    margin-bottom: 10px;
+    height: 1px;
+    margin-top: 10px;
+    background-color: transparent;
+    background-image: radial-gradient(circle, #8620c7 0, transparent 100%);
+}
+
+.BalanceSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 13px;
+    width: 90%;
+    margin: 5px;
+}
+
+
+.footer {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    height: 30%;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+.contractAddress {
+    box-sizing: border-box;
+    width: 12%;
+    height: 40px;
+}
+
+
+
+.DateText {
+    display: flex;
+    align-items: center;
+    text-wrap: nowrap;
+    padding-right: 20px;
+}
+
+.claimBox {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.ContractContainer {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: 10px;
+    padding-top: 10px 10px 30px 10px;
+    /* padding-bottom: 40px; */
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.glow {
+    font-size: 40px;
+    color: #fff;
+    text-align: center;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+.buttonSection {
+    max-width: 200px;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.buySection {
+    padding-top: 0px;
+    width: 100%;
+    max-width: 900px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.buyInfoSection {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    font-size: 32px;
+    padding: 15px;
+}
+
+.infoText {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.buyBtn {
+    height: 40px;
+}
+
+.ticketPrice {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.ticketInfo {
+    font-size: 24px;
+    padding: 10px;
+}
+
+@-webkit-keyframes glow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #3976fe, 0 0 40px #3976fe, 0 0 50px #3976fe, 0 0 60px #3976fe, 0 0 70px #3976fe;
+    }
+
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #103ea4, 0 0 40px #103ea4, 0 0 50px #103ea4, 0 0 60px #103ea4, 0 0 70px #103ea4, 0 0 80px #103ea4;
+    }
+}
+
+.hover-animation:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 10px #0073e633, 0 0 20px #0073e633, 0 0 30px #0073e633, 0 0 40px #0073e633, 0 0 50px #0073e633, 0 0 60px #0073e633;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.blue-glow {
+    animation: blue-glow 1.25s ease-in-out infinite alternate;
+    font-size: 32px;
+}
+
+@-webkit-keyframes blue-glow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+}
+
+.text-blue-700 {
+    --tw-text-opacity: 1;
+    color: #ffffff;
+}
+
+.font-extrabold {
+    font-weight: 800;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.desriptionText {
+    font-size: 16px;
+    line-height: 1.4375em;
+    font-weight: 400;
+    color: #b6b6b6;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.Text1 {
+    color: #ada6a6;
+    font-size: 20px;
+}
+
+.Text2 {
+    color: #c80b0b;
+}
+
+
+
+.LockButton {
+    margin-top: 10px;
+    --qodef-gradient-color: #ffffff;
+    background: #be1a16;
+    transition: background-position .9s cubic-bezier(.25, .1, .14, .91), color .2s ease-out, background-color .2s ease-out, border-color .2s ease-out;
+    border: 3px ridge #cc1614;
+    border-collapse: collapse;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-around;
+    height: 45px;
+    width: 150px;
+    line-height: 20px;
+    align-items: center;
+    /* border: 1px solid #3370FF; */
+    cursor: pointer;
+}
+
+.LockButton:hover {
+    background: radial-gradient(306.12% 3126.18% at 16.67% 33.7%, #0be4d9 0%, #4c4fee 84.12%, #2b2ee7 100%);
+    text-decoration: none;
+}
+
+.LockButton:active {
+    background-color: transparent;
+    color: white;
+    transform: scale(1);
+    cursor: pointer;
+}
+
+.LockButton:disabled {
+    background: #2a2828;
+    color: white;
+    cursor: unset;
+}
+
+
+.LockBox {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.MainDashboard {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.MaxButton {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    display: flex;
+    outline: none;
+    border-image-slice: 1;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 18px;
+    text-align: center;
+    align-items: center;
+    font-weight: 100;
+    color: #fff;
+    transition: 0.1s ease-in-out;
+    height: initial;
+    cursor: pointer;
+    margin: 0px;
+    line-height: 1.33334em;
+    --qodef-gradient-color: #ffffff;
+    background: #3370ff;
+    background-size: 100% 100%, 90% 100%;
+    background-position: 0 0, -800% 0;
+    background-repeat: no-repeat;
+    transition: background-position .9s cubic-bezier(.25, .1, .14, .91), color .2s ease-out, background-color .2s ease-out, border-color .2s ease-out;
+}
+
+.ConnectWalletBox {
+    text-align: center;
+    height: -webkit-fill-available;
+    margin: auto;
+    /* margin-bottom: 200px; */
+    margin-top: 5%;
+    /* margin-bottom: 20%; */
+}
+
+.ConnectWalletBoxButton {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.SpinnerBox {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.ConnectWalletAgain {
+    width: 100%;
+    text-align: -webkit-center;
+    height: 30%;
+    margin-bottom: 30%;
+}
+
+.ButtonContainer {
+    text-align: center;
+    margin: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.ConnectButton {
+    width: 187px;
+    border: 3px ridge #cc1614;
+    border-image-slice: 1;
+    font-size: 15px;
+    font-weight: 700;
+    height: 90%;
+    cursor: pointer;
+    background: #be1a16;
+    padding: 7px 15px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    border-radius: 20px;
+    display: block;
+}
+
+.ConnectButton:active {
+    background-color: transparent;
+    color: #26c5eb;
+    transform: scale(1);
+    cursor: pointer;
+}
+
+.ConnectButton:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    background: radial-gradient(306.12% 3126.18% at 16.67% 33.7%, #0be4d9 0%, #4c4fee 84.12%, #2b2ee7 100%);
+    text-decoration: none;
+    color: #fff;
+    text-decoration: none;
+}
+
+.ConnectButton:disabled {
+    background-color: #a6a6a6;
+    box-shadow: none;
+    cursor: no-drop;
+}
+
+
+.GlobalContainer {
+    /* background-color: #2a2828; */
+    background-size: cover;
+    color: white;
+    width: auto;
+    position: relative;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    /* padding-bottom: 30px; */
+    border-radius: 70px;
+    /* margin: 60px 20px; */
+    margin-bottom: 0;
+    padding-top: 80px;
+}
+
+
+.inputPanel {
+    display: flex;
+    /* align-items: center; */
+    border: 1px solid #2b3553;
+    border-radius: 20px;
+    justify-content: space-between;
+    width: 80%;
+    margin-bottom: 10px;
+    margin: auto;
+}
+
+.inputPanel>p {
+
+    text-wrap: nowrap;
+    padding-left: 30px;
+    padding-right: 0px;
+}
+
+.inputPanelHeader {
+    display: flex;
+    width: -webkit-fill-available;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.DashboardContainer {
+    display: flex;
+    width: -webkit-fill-available;
+    justify-content: space-between;
+    /* height: 50px; */
+}
+
+.LpBalance {
+    display: flex;
+    width: 80%;
+    /* padding: 0px 30px 0px 30px; */
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.StakingBox {
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: auto;
+}
+
+
+.StakingBox1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.StakingInfo {
+    display: flex;
+}
+
+.ContractContentTextTitle {
+    font-size: 35px;
+    color: white;
+    text-align: center;
+    padding-bottom: 30px;
+    font-weight: 700;
+}
+
+.ContractContentTextTitlePlan {
+    /* position: absolute; */
+    /* padding: 10px 20px; */
+    /* margin-left: 75px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -60px;
+    /* background: #3370ff; */
+    border-radius: 20px;
+    font-size: 20px;
+    width: 100%;
+}
+
+.PlanBox {
+    width: 50%;
+    text-decoration: none;
+    color: white;
+}
+
+.accountDetail {
+    display: flex;
+}
+
+.accountData {
+    display: flex;
+    width: -webkit-fill-available;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.withdrawContent {
+    width: -webkit-fill-available;
+    display: flex;
+}
+
+.LoadingBox {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.FirstNote {
+    color: #ffffff;
+    font-size: 25px;
+}
+
+.HeaderText {
+    font-size: 20px;
+    text-align: initial;
+    font-weight: 500;
+}
+
+.HeaderContent {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.HeaderList {
+    text-align: initial;
+}
+
+.HeaderOfferText {
+    text-align: initial;
+    font-size: 17px;
+}
+
+.HeaderList>li {
+    padding-bottom: 5px;
+}
+
+.StakingBoxs {
+    margin-left: 10px;
+    margin-right: 10px;
+    /* background: linear-gradient(rgba(0, 173, 230, 0.098), rgb(11, 12, 17) 70%); */
+    background-color: #202a3e;
+    transition: .5s cubic-bezier(.17, .17, .24, 1);
+    /* border: 1px solid transparent; */
+    border-radius: 40px;
+    padding-bottom: 20px;
+    width: -webkit-fill-available;
+    margin-top: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    /* border: 3px solid transparent; */
+    padding-top: 30px;
+}
+
+.StakingBoxs:hover {
+    background-color: #202a3e85;
+    border: 1px solid #3370ff;
+}
+
+.explanation {
+    padding-bottom: 20px;
+    width: -webkit-fill-available;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 30px;
+}
+
+.explanation p {
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.StakingContents {
+    width: 100%;
+    display: flex;
+}
+
+.TabContainer {
+    border: 1px solid rgb(229 229 229 / 10%);
+    border-radius: 1rem;
+    /* background: linear-gradient(rgba(0, 173, 230, 0.098), rgb(11, 12, 17) 70%); */
+    background-color: #202a3e;
+    transition: .5s cubic-bezier(.17, .17, .24, 1);
+}
+
+.TabContainer:hover {
+    background-color: #202a3e85;
+}
+
+.TabList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+    padding-inline-start: 0px;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+.TabTitle1 {
+    padding: 16px 80px;
+    font-size: 24px;
+    border-radius: 1rem 0 0 !important;
+}
+
+.TabTitle1[aria-selected="false"] {
+    background: #161616;
+    color: white;
+    border: 1px solid rgb(229 229 229 / 10%);
+}
+
+.TabTitle1[aria-selected="true"] {
+    background: transparent;
+    color: rgb(0, 173, 230);
+    border: none;
+}
+
+.TabTitle1:focus-visible {
+    outline: none;
+}
+
+.TabTitle2 {
+    padding: 16px 80px;
+    font-size: 24px;
+    border-radius: 0 1rem 0 0 !important;
+}
+
+.TabTitle2[aria-selected="false"] {
+    background: #161616;
+    color: white;
+    border: 1px solid rgb(229 229 229 / 10%);
+}
+
+.TabTitle2[aria-selected="true"] {
+    background: transparent;
+    color: rgb(0, 173, 230);
+}
+
+.TabTitle2:focus-visible {
+    outline: none;
+}
+
+.TabContents {
+    margin-left: 10px;
+    margin-right: 10px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 40px;
+    /* padding-bottom: 20px; */
+    width: -webkit-fill-available;
+    /* margin-top: 20px; */
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 3px solid transparent;
+    /* padding-top: 30px; */
+}
+
+@media screen and (max-width: 1600px) {
+    .withdrawContent {
+        flex-direction: column;
+    }
+
+    .ContractContainer {
+        width: 100%;
+    }
+
+    .StakingBox>div {
+        justify-content: space-between;
+    }
+
+}
+
+
+@media screen and (max-width: 1200px) {
+    .StakingContents {
+        flex-direction: column;
+    }
+
+    .PlanBox {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+}
+
+
+@media screen and (max-width: 450px) {
+    .LpBalance {
+        width: 100%;
+        padding: 0px;
+    }
+
+    .UserBalance {
+        flex-direction: row;
+    }
+
+    .TabTitle1 {
+        padding: 16px 40px;
+    }
+
+    .TabTitle2 {
+        padding: 16px 40px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .LpBalance {
+        width: 90%;
+        padding: 0px;
+    }
+
+    .StakingBox {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .GlobalContainer {
+        padding: 0px;
+    }
+
+    /* .ContractContentTextTitlePlan{
+        width: 50% !important; 
+    } */
+
+    .HeaderContainer {
+        flex-direction: column;
+    }
+
+    .footer {
+        flex-direction: column;
+    }
+
+    .BalanceSection {
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+    .contractAddress {
+        width: auto;
+    }
+
+    .inputPanel {
+        flex-direction: row;
+        width: 90%;
+    }
+
+    .inputPanelHeader {
+        flex-direction: row;
+        width: 90%;
+    }
+
+    .inputPanelHeaderContainer {
+        flex-direction: row;
+    }
+
+    .MaxButton {
+        padding: 14px;
+    }
+
+    .ContractContainer {
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .DashboardContainer {
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+}
+
+
+
+@media screen and (max-width: 1024px) {
+    .GlobalContainer {
+        margin-top: 50px;
+    }
+
+    /* .ContractContentTextTitlePlan{
+        width: 80%;
+    } */
+}
+
+@media screen and (max-width: 768px) {
+    .GlobalContainer {
+        margin-top: 250px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .GlobalContainer {
+        margin-top: 280px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .winnerSection {
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
+    .winnerSectionInner {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+.winnerSection {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.winnerSectionInner {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+}
+
+.winnerLabel {
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-bottom: 2rem;
+}
+
+.tableContainer {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    border-radius: 1.5rem;
+    --tw-border-spacing-y: 0.125rem;
+    --tw-border-spacing-x: 0px;
+    border-collapse: separate;
+    table-layout: auto;
+    width: 100%;
+    display: table;
+}
+
+.table-header-group {
+    display: table-header-group;
+}
+
+.table-row {
+    --tw-bg-opacity: 1;
+    background-color: #25224f;
+    display: table-row;
+}
+
+.table-cell {
+    text-transform: uppercase;
+    text-align: left;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    display: table-cell;
+}
+
+.rounded-l {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.rounded-r {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.table-content {
+    display: table-row-group;
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
