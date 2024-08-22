@@ -13,7 +13,11 @@ import { useWeb3Modal } from "@web3modal/react";
 import { waitForTransaction, readContract, writeContract } from '@wagmi/core'
 import Type from "../Type";
 import ticketImg from "../icons/ticket1.png";
+import userBadgeImg from "../icons/user-badge.png";
+import winnerBadgeImg from "../icons/winner-badge.png";
+import rightBadgeImg from "../icons/right-badge.png";
 import { Link } from 'react-router-dom';
+import { shorten } from '../utils/shorten.ts';
 import {
   Table,
   Thead,
@@ -63,6 +67,7 @@ const AllVaults = () => {
   const [ticketLeft, setTicketLeft] = useState(5)
   const [requiedIraAmount, setIraAmount] = useState(0);
   const [userPurchased, setUserPurchased] = useState(0);
+  const [latestWinner, setLatestWinner] = useState('');
 
   useEffect(() => {
     const switchChain = async () => {
@@ -124,7 +129,7 @@ const AllVaults = () => {
         const required_ira = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'getIRATokenAmount', args: [10]});
         const user_purchased = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'ticketsOf', args: [address]});
         // const rewardPerYear = Number(totalInfo[1]) * 60 * 60 * 24 * 365;
-        console.log("user_purchased", user_purchased);
+        console.log("winners", winners);
         setWinner(winners);
         setTokenAmount(tokenAmount);
         setTokenBalance(tokenAmount);
@@ -133,6 +138,7 @@ const AllVaults = () => {
         setTicketLeft(ticket_left);
         setIraAmount(required_ira);
         setUserPurchased(user_purchased);
+        setLatestWinner(winners[winners.length - 1].winnerAddress);
         // setMaxWithdrawBalance(withdrawableAmount);
       } catch (e) {
         console.error(e)
@@ -142,52 +148,6 @@ const AllVaults = () => {
       FetchStakingData();
     }
   }, [isConnected, address, chain, confirming])
-  const [totalPages, setTotalPages] = useState(0)
-  type PageNumber = number | '...'
-  type PageNumbersArray = PageNumber[]
-
-  const [currentPage, setCurrentPage] = useState(1)
-  const [pageNumbers, setPageNumbers] = useState<PageNumbersArray>([1])
-
-  const calculatePageNumbers = (
-    totalPages,
-    currentPage,
-  ): PageNumbersArray => {
-    let pages: PageNumbersArray = []
-
-    if (totalPages <= 4) {
-      pages = Array.from({ length: totalPages }, (_, i) => i + 1)
-    } else {
-      if (currentPage === 1) {
-        pages = [1, 2, '...', totalPages - 1, totalPages]
-      } else {
-        if (currentPage + 1 < totalPages) {
-          if (currentPage + 1 === totalPages - 1) {
-            pages = [currentPage - 1, currentPage, currentPage + 1, totalPages]
-          } else {
-            pages = [
-              currentPage - 1,
-              currentPage,
-              currentPage + 1,
-              '...',
-              totalPages,
-            ]
-          }
-        } else if (currentPage < totalPages) {
-          pages = [currentPage - 1, currentPage, currentPage + 1]
-        } else {
-          pages = [1, 2, '...', currentPage - 1, currentPage]
-        }
-      }
-    }
-
-    return pages
-  }
-
-  const handlePageChange = (newPageNumber) => {
-    setCurrentPage(newPageNumber)
-    setPageNumbers(calculatePageNumbers(totalPages, newPageNumber))
-  }
 
   const onTokenAllowance = async () => {
     try {
@@ -217,14 +177,10 @@ const AllVaults = () => {
   const onTokenStake = async () => {
     try {
       setConfirming(true);
-      // let TokenAmounts;
-      // TokenAmounts = `0x${(Number(tokenAmounts) * (10 ** 6)).toString(16)}`;
       const deposit = await writeContract({
         address: raffleAddress,
         abi: raffleAbi,
         functionName: 'buyTicket',
-        // args: [TokenAmounts],
-        // account: address
       })
       const depositData = await waitForTransaction({
         hash: deposit.hash
@@ -290,80 +246,73 @@ const AllVaults = () => {
                       `}
                   </style>
                   <section className="ContractContainer">
+                    <div className="badgeSection">
+                      <div className="badgeInfos">
+                        <div className="badgeUserInfo">
+                          <img src={userBadgeImg} alt="" width="80px" />
+                          <p className="badgeText glow">You purchased {Number(userPurchased)} tickets</p>
+                        </div>
+                        <div className="badgeWinnerInfo">
+                          <img src={winnerBadgeImg} width="80px" alt="" />
+                          <p className="badgeText glow">Latest Winner: {latestWinner ? shorten(latestWinner) : "No winner yet"}</p>
+                        </div>
+                      </div>
+                      <div className="badgeImage">
+                        <img src={rightBadgeImg} width="150px" alt="" />
+                      </div>
+                    </div>
                     <div className="topSection">
-                    <div className={styles.Introduction}>
-                      <div className={styles.Line2}>
-                        <span className={styles.ChangeableText}>
-                          <Type />
-                        </span>
-                      </div>
-                    </div>
-                    <div className='buySection'>
-                      <div className='buyInfoSection'>
-                        <div className='infos'>
-                          <p className="infoText text-md font-extrabold text-center text-blue-700">Current Round:</p>
-                          <p className='infoText font-extrabold uppercase text-center text-white glow'>{Number(currentRound)}</p>
-                        </div>
-                        <div className='infos'>
-                          <p className="infoText text-md font-extrabold text-center text-blue-700">Tickets Left:</p>
-                          <p className='infoText font-extrabold uppercase text-center text-white glow'>{Number(ticketLeft)}</p>
+                      <div className={styles.Introduction}>
+                        <div className={styles.Line2}>
+                          <span className={styles.ChangeableText}>
+                            <Type />
+                          </span>
                         </div>
                       </div>
-                      <div className='marketingSection text-md font-extrabold text-center pt-5'>
-                        <div className='ticketPrice'>
-                          <p className='ticketInfo infoText blue-glow'>Ticket Price:</p>
-                          <p className='ticketInfo infoText blue-glow'>$10 IRA</p>
+                      <div className='buySection'>
+                        <div className='buyInfoSection'>
+                          <div className='infos'>
+                            <p className="infoText text-md font-extrabold text-center text-blue-700">Current Round:</p>
+                            <p className='infoText font-extrabold uppercase text-center text-white glow'>{Number(currentRound)}</p>
+                          </div>
+                          <div className='infos'>
+                            <p className="infoText text-md font-extrabold text-center text-blue-700">Tickets Left:</p>
+                            <p className='infoText font-extrabold uppercase text-center text-white glow'>{Number(ticketLeft)}</p>
+                          </div>
                         </div>
-                        <div className='marketing'>
-                          <p className='ticketInfo infoText blue-glow'>$10 to win $250</p>
+                        <div className='marketingSection text-md font-extrabold text-center pt-5'>
+                          <div className='ticketPrice'>
+                            <p className='ticketInfo infoText blue-glow'>Ticket Price:</p>
+                            <p className='ticketInfo infoText blue-glow'>$10 IRA</p>
+                          </div>
+                          <div className='marketing'>
+                            <p className='ticketInfo infoText blue-glow'>$10 to win $250</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className='imgSection text-md font-extrabold text-center pt-5'>
-                        <img src={ticketImg} className='ticketImg' alt='' width="250px" />
-                      </div>
+                        <div className='imgSection text-md font-extrabold text-center pt-5'>
+                          <img src={ticketImg} className='ticketImg' alt='' width="250px" />
+                        </div>
 
-                    </div>
-                    <div className='TabContents'>
-                      {!isApproved ?
-                        <section className="LockBox">
-                          {confirming === false ?
-                            Number(tokenBalance) > (Number(requiedIraAmount) * 1e18) ?
-                              <>
-                                <button disabled={confirming === false ? false : true} onClick={() => onTokenAllowance()} className="LockButton">
-                                  <p>ALLOW</p>
-                                </button>
-                              </>
-                              :
-                              <>
-                                <p className='Text1'>You have no enough IRA now</p>
-                                <button disabled={true}className="LockButton">
-                                  <p>BUY TICKET</p>
-                                </button>
-                              </>
-                            :
-                            <>
-                              <ClipLoader
-                                color={'#36d7b7'}
-                                loading={confirming}
-                                size={30}
-                                aria-label="Loading Spinner"
-                                data-testid="loader"
-                              />
-                            </>
-                          }
-                        </section>
-                        :
-                        <>
+                      </div>
+                      <div className='TabContents'>
+                        {!isApproved ?
                           <section className="LockBox">
                             {confirming === false ?
-                              <>
-                                <section className="claimBox">
-                                  <button disabled={Number(tokenAmount) > 0 ? false : true} onClick={() => onTokenStake()} className="LockButton">BUY TICKET</button>
-                                </section>
-                              </>
+                              Number(tokenBalance) > (Number(requiedIraAmount) * 1e18) ?
+                                <>
+                                  <button disabled={confirming === false ? false : true} onClick={() => onTokenAllowance()} className="LockButton">
+                                    <p>APPROVE</p>
+                                  </button>
+                                </>
+                                :
+                                <>
+                                  <p className='Text1'>You have no enough IRA now</p>
+                                  <button disabled={true}className="LockButton">
+                                    <p>BUY TICKET</p>
+                                  </button>
+                                </>
                               :
                               <>
-                                {/* <p className='Text1'>Staking...</p> */}
                                 <ClipLoader
                                   color={'#36d7b7'}
                                   loading={confirming}
@@ -374,9 +323,31 @@ const AllVaults = () => {
                               </>
                             }
                           </section>
-                        </>
-                      }
-                    </div>
+                          :
+                          <>
+                            <section className="LockBox">
+                              {confirming === false ?
+                                <>
+                                  <section className="claimBox">
+                                    <button disabled={Number(tokenAmount) > 0 ? false : true} onClick={() => onTokenStake()} className="LockButton">BUY TICKET</button>
+                                  </section>
+                                </>
+                                :
+                                <>
+                                  {/* <p className='Text1'>Staking...</p> */}
+                                  <ClipLoader
+                                    color={'#36d7b7'}
+                                    loading={confirming}
+                                    size={30}
+                                    aria-label="Loading Spinner"
+                                    data-testid="loader"
+                                  />
+                                </>
+                              }
+                            </section>
+                          </>
+                        }
+                      </div>
                     </div>
                     <div className="winnerSection">
                       <div className="winnerSectionInner">
