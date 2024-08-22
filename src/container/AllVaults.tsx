@@ -285,6 +285,7 @@ const AllVaults = () => {
                       `}
                   </style>
                   <section className="ContractContainer">
+                    <div className="topSection">
                     <div className={styles.Introduction}>
                       <div className={styles.Line2}>
                         <span className={styles.ChangeableText}>
@@ -365,6 +366,7 @@ const AllVaults = () => {
                           </section>
                         </>
                       }
+                    </div>
                     </div>
                     <div className="winnerSection">
                       <div className="winnerSectionInner">

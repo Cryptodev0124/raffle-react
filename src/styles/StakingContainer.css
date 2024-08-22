@@ -117,7 +117,7 @@
 }
 
 .buyInfoSection {
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
 }
@@ -235,7 +235,7 @@
 }
 
 .LockButton:hover {
-    background: radial-gradient(306.12% 3126.18% at 16.67% 33.7%, #0be4d9 0%, #4c4fee 84.12%, #2b2ee7 100%);
+    background: radial-gradient(306.12% 3126.18% at 16.67% 33.7%, #f0242e 0%, #ee4c8a 84.12%, #e72b4a 100%);
     text-decoration: none;
 }
 
@@ -358,7 +358,7 @@
 .ConnectButton:hover {
     background-position: right center;
     /* change the direction of the change here */
-    background: radial-gradient(306.12% 3126.18% at 16.67% 33.7%, #0be4d9 0%, #4c4fee 84.12%, #2b2ee7 100%);
+    background: radial-gradient(306.12% 3126.18% at 16.67% 33.7%, #f0242e 0%, #ee4c8a 84.12%, #e72b4a 100%);
     text-decoration: none;
     color: #fff;
     text-decoration: none;
@@ -370,6 +370,16 @@
     cursor: no-drop;
 }
 
+.topSection {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #00000070;
+    border-radius: 16px;
+}
 
 .GlobalContainer {
     /* background-color: #2a2828; */
@@ -384,7 +394,7 @@
     border-radius: 70px;
     /* margin: 60px 20px; */
     margin-bottom: 0;
-    padding-top: 80px;
+    padding-top: 120px;
 }
 
 
