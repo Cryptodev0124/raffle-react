@@ -51,6 +51,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "*",
     "@types/node": "^18.7.13",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
