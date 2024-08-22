@@ -35,7 +35,7 @@ const AllVaults = () => {
   const [tokenAmount, setTokenAmount] = useState(0);
   const [withdrawAmount, setWithdrawAmount] = useState(0);
   let [confirming, setConfirming] = useState(false);
-  const raffleAddress = "0x85C5Ddc56FEBCB5cA7Fc1bEC0228Cddbd50f8B9A";
+  const raffleAddress = "0x9427e0EF652CF5FC445F9F3B5314c115f0E4A6ae";
   const TokenAddress = "0x733ca949Cc6994C9545ccB3619A7cfA9c2a519b0";
 
   const { switchNetwork } = useSwitchNetwork()
@@ -59,6 +59,10 @@ const AllVaults = () => {
   // const [error, setError] = useState('')
   const [winningPools, setWinningPools] = useState('')
   const [winner, setWinner] = useState([])
+  const [currentRound, setCurrentRound] = useState(1)
+  const [ticketLeft, setTicketLeft] = useState(5)
+  const [requiedIraAmount, setIraAmount] = useState(0);
+  const [userPurchased, setUserPurchased] = useState(0);
 
   useEffect(() => {
     const switchChain = async () => {
@@ -115,19 +119,20 @@ const AllVaults = () => {
         const winners = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'getWinners' });
         const tokenAllowance = await readContract({ address: TokenAddress, abi: UsdtAbi, functionName: 'allowance', args: [address, raffleAddress] });
         const tokenAmount = await readContract({ address: TokenAddress, abi: UsdtAbi, functionName: 'balanceOf', args: [address] });
+        const current_round = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'getCurrentRound'});
+        const ticket_left = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'getTicketsLeft'});
+        const required_ira = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'getIRATokenAmount', args: [10]});
+        const user_purchased = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'ticketsOf', args: [address]});
         // const rewardPerYear = Number(totalInfo[1]) * 60 * 60 * 24 * 365;
-        console.log("winners", winners);
-        const APY = 24;
-        setApy(APY);
-        // setTvl(Number(tvl) / Math.pow(10, 6));
-        // setUserAmount(Number(userStakedAmount) / Math.pow(10, 6));
-        // setWithdrawableAmount(Number(withdrawableAmount) / Math.pow(10, 6));
-        // setLockingEnabled(totalInfo[4]);
-        // setAllowance(Number(tokenAllowance) / Math.pow(10, 6));
+        console.log("user_purchased", user_purchased);
         setWinner(winners);
         setTokenAmount(tokenAmount);
         setTokenBalance(tokenAmount);
         setMaxBalance(tokenAmount);
+        setCurrentRound(current_round);
+        setTicketLeft(ticket_left);
+        setIraAmount(required_ira);
+        setUserPurchased(user_purchased);
         // setMaxWithdrawBalance(withdrawableAmount);
       } catch (e) {
         console.error(e)
@@ -191,7 +196,7 @@ const AllVaults = () => {
         address: TokenAddress,
         abi: UsdtAbi,
         functionName: 'approve',
-        args: [raffleAddress, tokenBalance],
+        args: [raffleAddress, 9999999999999999999999999],
         account: address
       })
       setApproved(true);
@@ -297,11 +302,11 @@ const AllVaults = () => {
                       <div className='buyInfoSection'>
                         <div className='infos'>
                           <p className="infoText text-md font-extrabold text-center text-blue-700">Current Round:</p>
-                          <p className='infoText font-extrabold uppercase text-center text-white glow'>1</p>
+                          <p className='infoText font-extrabold uppercase text-center text-white glow'>{Number(currentRound)}</p>
                         </div>
                         <div className='infos'>
                           <p className="infoText text-md font-extrabold text-center text-blue-700">Tickets Left:</p>
-                          <p className='infoText font-extrabold uppercase text-center text-white glow'>25</p>
+                          <p className='infoText font-extrabold uppercase text-center text-white glow'>{Number(ticketLeft)}</p>
                         </div>
                       </div>
                       <div className='marketingSection text-md font-extrabold text-center pt-5'>
@@ -322,14 +327,19 @@ const AllVaults = () => {
                       {!isApproved ?
                         <section className="LockBox">
                           {confirming === false ?
-                            Number(tokenBalance) > 0 ?
+                            Number(tokenBalance) > (Number(requiedIraAmount) * 1e18) ?
                               <>
                                 <button disabled={confirming === false ? false : true} onClick={() => onTokenAllowance()} className="LockButton">
                                   <p>ALLOW</p>
                                 </button>
                               </>
                               :
-                              <p className='Text1'>You have no IRA now</p>
+                              <>
+                                <p className='Text1'>You have no enough IRA now</p>
+                                <button disabled={true}className="LockButton">
+                                  <p>BUY TICKET</p>
+                                </button>
+                              </>
                             :
                             <>
                               <ClipLoader
@@ -383,13 +393,16 @@ const AllVaults = () => {
                               </Tr>
                             </Thead>
                             <Tbody bg="#00000090">
-                            {
+                            {(winner.length > 0) ? 
                               winner?.map((winner) => {
                                 return  <Tr>
                                 <Td style={{textAlign: "center"}}>{Number(winner.round)}</Td>
                                 <Td isNumeric style={{textAlign: "center"}}>{winner.winnerAddress}</Td>
-                              </Tr>
+                              </Tr> 
                               })
+                             :
+                             <Tr><Td colSpan={2} textAlign="center" verticalAlign="middle">No Winner yet.</Td></Tr>
+                              
                             }
                             </Tbody>
                             {/* <Tfoot>
