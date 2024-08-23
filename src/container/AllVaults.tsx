@@ -35,7 +35,6 @@ import {
 const AllVaults = () => {
   const { open } = useWeb3Modal();
   const { address, isConnected } = useAccount();
-  console.log("address", address);
   const { chain } = useNetwork();
   const [tokenAmount, setTokenAmount] = useState(0);
   const [withdrawAmount, setWithdrawAmount] = useState(0);
@@ -70,7 +69,7 @@ const AllVaults = () => {
   const [userPurchased, setUserPurchased] = useState(0);
   const [latestWinner, setLatestWinner] = useState('');
 
-  
+
   useEffect(() => {
     const switchChain = async () => {
       try {
@@ -86,8 +85,8 @@ const AllVaults = () => {
   }, [isConnected, chain?.id, switchNetwork])
 
   const { data, error: readContractsError } = async () => await readContract({
-    address: raffleAddress, 
-    abi: raffleAbi, 
+    address: raffleAddress,
+    abi: raffleAbi,
     functionName: 'getWinners'
   })
 
@@ -124,12 +123,12 @@ const AllVaults = () => {
     const FetchStakingData = async () => {
       try {
         const winners = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'getWinners' });
+        const required_ira = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'getIRATokenAmount', args: [10 * 1e6] });
         const tokenAllowance = await readContract({ address: TokenAddress, abi: UsdtAbi, functionName: 'allowance', args: [address, raffleAddress] });
         const tokenAmount = await readContract({ address: TokenAddress, abi: UsdtAbi, functionName: 'balanceOf', args: [address] });
-        const current_round = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'getCurrentRound'});
-        const ticket_left = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'getTicketsLeft'});
-        const required_ira = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'getIRATokenAmount', args: [10*1e6]});
-        const user_purchased = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'ticketsOf', args: [address]});
+        const current_round = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'getCurrentRound' });
+        const ticket_left = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'getTicketsLeft' });
+        const user_purchased = await readContract({ address: raffleAddress, abi: raffleAbi, functionName: 'ticketsOf', args: [address] });
         // const rewardPerYear = Number(totalInfo[1]) * 60 * 60 * 24 * 365;
         console.log("winners", winners, required_ira, tokenAmount);
         setWinner(winners);
@@ -197,7 +196,7 @@ const AllVaults = () => {
       setConfirming(false);
     }
   };
-  
+
   return (
     <main>
       <div className="GlobalContainer">
@@ -291,7 +290,7 @@ const AllVaults = () => {
                             <p className='ticketInfo infoText'>$10 to win $250</p>
                           </div>
                           <div className='marketing'>
-                            <p className='ticketInfo infoText'>{(Number(requiedIraAmount)/10**18).toFixed(2)} IRAs / Ticket</p>
+                            <p className='ticketInfo infoText'>{(Number(requiedIraAmount) / 10 ** 18).toFixed(2)} IRAs / Ticket</p>
                           </div>
                         </div>
                         <div className='imgSection text-md font-extrabold text-center pt-5'>
@@ -312,7 +311,7 @@ const AllVaults = () => {
                                 :
                                 <>
                                   <p className='Text1'>You have no enough IRA now</p>
-                                  <button disabled={true}className="LockButton">
+                                  <button disabled={true} className="LockButton">
                                     <p>BUY TICKET</p>
                                   </button>
                                 </>
@@ -364,22 +363,22 @@ const AllVaults = () => {
                             {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
                             <Thead bg="#25224f">
                               <Tr >
-                                <Th color='white' style={{textAlign: "center"}}>ROUND</Th>
-                                <Th isNumeric color='white' style={{textAlign: "center"}}>WINNER ADDRESS</Th>
+                                <Th color='white' style={{ textAlign: "center" }}>ROUND</Th>
+                                <Th isNumeric color='white' style={{ textAlign: "center" }}>WINNER ADDRESS</Th>
                               </Tr>
                             </Thead>
                             <Tbody bg="#00000090">
-                            {(winner.length > 0) ? 
-                              winner?.map((winner) => {
-                                return  <Tr>
-                                <Td style={{textAlign: "center"}}>{Number(winner.round)}</Td>
-                                <Td style={{textAlign: "center"}}>{window.innerWidth >= 768 ? winner.winnerAddress : shortenTable(winner.winnerAddress)}</Td>
-                              </Tr> 
-                              })
-                             :
-                             <Tr><Td colSpan={2} textAlign="center" verticalAlign="middle">No Winner yet.</Td></Tr>
-                              
-                            }
+                              {(winner.length > 0) ?
+                                winner?.map((winner) => {
+                                  return <Tr>
+                                    <Td style={{ textAlign: "center" }}>{Number(winner.round)}</Td>
+                                    <Td style={{ textAlign: "center" }}>{window.innerWidth >= 768 ? winner.winnerAddress : shortenTable(winner.winnerAddress)}</Td>
+                                  </Tr>
+                                })
+                                :
+                                <Tr><Td colSpan={2} textAlign="center" verticalAlign="middle">No Winner yet.</Td></Tr>
+
+                              }
                             </Tbody>
                             {/* <Tfoot>
                               <Tr>
@@ -456,118 +455,117 @@ const AllVaults = () => {
               </div>
             </section>
           :
-            <div className="MainDashboard">
-              <section className="ContactBox">
-                <>
-                  <style>
-                    {`
-                      .glow {
-                          // font-size: 40px;
-                          color: #fff;
-                          text-align: center;
-                          animation: glow 1s ease-in-out infinite alternate;
-                        }
+          <div className="MainDashboard">
+            <section className="ContactBox">
+              <>
+                <style>
+                  {`
+                    .glow {
+                        // font-size: 40px;
+                        color: #fff;
+                        text-align: center;
+                        animation: glow 1s ease-in-out infinite alternate;
+                      }
 
-                        @-webkit-keyframes glow {
-                          from {
-                            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #3976fe, 0 0 40px #3976fe, 0 0 50px #3976fe, 0 0 60px #3976fe, 0 0 70px #3976fe;
-                          }
-                          
-                          to {
-                            text-shadow: 0 0 20px #fff, 0 0 30px #103ea4, 0 0 40px #103ea4, 0 0 50px #103ea4, 0 0 60px #103ea4, 0 0 70px #103ea4, 0 0 80px #103ea4;
-                          }
+                      @-webkit-keyframes glow {
+                        from {
+                          text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #3976fe, 0 0 40px #3976fe, 0 0 50px #3976fe, 0 0 60px #3976fe, 0 0 70px #3976fe;
                         }
+                        
+                        to {
+                          text-shadow: 0 0 20px #fff, 0 0 30px #103ea4, 0 0 40px #103ea4, 0 0 50px #103ea4, 0 0 60px #103ea4, 0 0 70px #103ea4, 0 0 80px #103ea4;
+                        }
+                      }
 
-                        .hover-animation:hover {
-                          transform: scale(1.02);
-                          box-shadow: 0 0 10px #0073e633, 0 0 20px #0073e633, 0 0 30px #0073e633, 0 0 40px #0073e633, 0 0 50px #0073e633, 0 0 60px #0073e633;
-                          transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-                        }
+                      .hover-animation:hover {
+                        transform: scale(1.02);
+                        box-shadow: 0 0 10px #0073e633, 0 0 20px #0073e633, 0 0 30px #0073e633, 0 0 40px #0073e633, 0 0 50px #0073e633, 0 0 60px #0073e633;
+                        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                      }
 
-                        .blue-glow {
-                          animation: blue-glow 1.25s ease-in-out infinite alternate;
-                          font-size: 32px;
-                        }
+                      .blue-glow {
+                        animation: blue-glow 1.25s ease-in-out infinite alternate;
+                        font-size: 32px;
+                      }
 
-                        @-webkit-keyframes blue-glow {
-                          from {
-                            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
-                          }
-                          
-                          to {
-                            text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
-                          }
+                      @-webkit-keyframes blue-glow {
+                        from {
+                          text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
                         }
-                      `}
-                  </style>
-                  <section className="ContractContainer">
-                    <div className="badgeSection">
-                      <div className="badgeInfos">
-                        {/* <div className="badgeUserInfo">
-                          <img src={userBadgeImg} alt="" width="80px" />
-                          <p className="badgeText glow">You purchased {Number(userPurchased)} tickets</p>
-                        </div> */}
-                        <div className="badgeUserInfo">
-                          <img src={winnerBadgeImg} width="80px" alt="" />
-                          <p className="badgeText glow">Latest Winner: {latestWinner ? shorten(latestWinner) : "No winner yet"}</p>
-                        </div>
-                      </div>
-                      <div className="badgeImage">
-                        <img src={rightBadgeImg} width="150px" alt="" />
+                        
+                        to {
+                          text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+                        }
+                      }
+                    `}
+                </style>
+                <section className="ContractContainer">
+                  <div className="badgeSection">
+                    <div className="badgeInfos">
+                      {/* <div className="badgeUserInfo">
+                        <img src={userBadgeImg} alt="" width="80px" />
+                        <p className="badgeText glow">You purchased {Number(userPurchased)} tickets</p>
+                      </div> */}
+                      <div className="badgeUserInfo">
+                        <img src={winnerBadgeImg} width="80px" alt="" />
+                        <p className="badgeText glow">Latest Winner: {latestWinner ? shorten(latestWinner) : "No winner yet"}</p>
                       </div>
                     </div>
-                    <div className="topSection">
-                      <div className={styles.Introduction}>
-                        <div className={styles.Line2}>
-                          <span className={styles.ChangeableText}>
-                            <Type />
-                          </span>
-                        </div>
-                      </div>
-                      <div className='buySection'>
-                        <div className='buyInfoSection'>
-                          <div className='infos'>
-                            <p className="infoText text-md font-extrabold text-center text-blue-700">Current Round:</p>
-                            <p className='infoText font-extrabold uppercase text-center text-white glow'>{Number(currentRound)}</p>
-                          </div>
-                          <div className='infos'>
-                            <p className="infoText text-md font-extrabold text-center text-blue-700">Tickets Left:</p>
-                            <p className='infoText font-extrabold uppercase text-center text-white glow'>{Number(ticketLeft)}</p>
-                          </div>
-                        </div>
-                        <div className='marketingSection text-md font-extrabold text-center pt-5'>
-                          <div className='ticketPrice'>
-                            <p className='ticketInfo infoText'>Ticket Price:</p>
-                            <p className='ticketInfo infoText'>$10 IRA</p>
-                          </div>
-                          <div className='marketing'>
-                            <p className='ticketInfo infoText'>$10 to win $250</p>
-                          </div>
-                          <div className='marketing'>
-                            <p className='ticketInfo infoText'>{(Number(requiedIraAmount)/10**18).toFixed(2)} IRAs / Ticket</p>
-                          </div>
-                        </div>
-                        <div className='imgSection text-md font-extrabold text-center pt-5'>
-                          <img src={ticketImg} className='ticketImg' alt='' width="250px" />
-                        </div>
-
-                      </div>
-                      <section className="ConnectWalletBox">
-                        <p className="FirstNote">Please connect wallet first</p>
-                        <div className="ConnectWalletBoxButton" style={{marginBottom: "30px"}}>
-                          <button className="ConnectButton" type="submit" onClick={() => {
-                            onConnectWallet();
-                          }}>Connect Wallet</button>
-                        </div>
-                      </section>
+                    <div className="badgeImage">
+                      <img src={rightBadgeImg} width="150px" alt="" />
                     </div>
-                  </section>
-                </>
-              </section>
-              <div style={{marginBottom: "30px"}}></div>
-            </div>
+                  </div>
+                  <div className="topSection">
+                    <div className={styles.Introduction}>
+                      <div className={styles.Line2}>
+                        <span className={styles.ChangeableText}>
+                          <Type />
+                        </span>
+                      </div>
+                    </div>
+                    <div className='buySection'>
+                      <div className='buyInfoSection'>
+                        <div className='infos'>
+                          <p className="infoText text-md font-extrabold text-center text-blue-700">Current Round:</p>
+                          <p className='infoText font-extrabold uppercase text-center text-white glow'>{Number(currentRound)}</p>
+                        </div>
+                        <div className='infos'>
+                          <p className="infoText text-md font-extrabold text-center text-blue-700">Tickets Left:</p>
+                          <p className='infoText font-extrabold uppercase text-center text-white glow'>{Number(ticketLeft)}</p>
+                        </div>
+                      </div>
+                      <div className='marketingSection text-md font-extrabold text-center pt-5'>
+                        <div className='ticketPrice'>
+                          <p className='ticketInfo infoText'>Ticket Price:</p>
+                          <p className='ticketInfo infoText'>$10 IRA</p>
+                        </div>
+                        <div className='marketing'>
+                          <p className='ticketInfo infoText'>$10 to win $250</p>
+                        </div>
+                        <div className='marketing'>
+                          <p className='ticketInfo infoText'>{(Number(requiedIraAmount) / 10 ** 18).toFixed(2)} IRAs / Ticket</p>
+                        </div>
+                      </div>
+                      <div className='imgSection text-md font-extrabold text-center pt-5'>
+                        <img src={ticketImg} className='ticketImg' alt='' width="250px" />
+                      </div>
+
+                    </div>
+                    <section className="ConnectWalletBox">
+                      <p className="FirstNote">Please connect wallet first</p>
+                      <div className="ConnectWalletBoxButton" style={{ marginBottom: "30px" }}>
+                        <button className="ConnectButton" type="submit" onClick={() => {
+                          onConnectWallet();
+                        }}>Connect Wallet</button>
+                      </div>
+                    </section>
+                  </div>
+                </section>
+              </>
+            </section>
+            <div style={{ marginBottom: "30px" }}></div>
+          </div>
         }
-
       </div>
     </main >
   )
