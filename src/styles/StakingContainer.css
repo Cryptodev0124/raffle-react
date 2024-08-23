@@ -238,6 +238,10 @@
     padding: 15px;
 }
 
+.badgeInfos {
+    margin: auto;
+}
+
 .LockButton {
     margin-top: 10px;
     --qodef-gradient-color: #ffffff;
@@ -820,9 +824,9 @@ input[type=number] {
 
 
 @media screen and (max-width: 1024px) {
-    .GlobalContainer {
+    /* .GlobalContainer {
         margin-top: 50px;
-    }
+    } */
 
     /* .ContractContentTextTitlePlan{
         width: 80%;
@@ -831,32 +835,53 @@ input[type=number] {
 
 @media screen and (max-width: 768px) {
     .GlobalContainer {
-        margin-top: 250px;
+        padding-top: 200px;
     }
 }
 
 @media screen and (max-width: 540px) {
     .GlobalContainer {
-        margin-top: 280px;
+        padding-top: 280px;
+    }
+}
+
+@media screen and (max-width: 484px) {
+    .badgeInfos {
+        display: flex;
+        flex-direction: column;
+    }
+    .badgeUserInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 
 @media screen and (max-width: 768px) {
     .winnerSection {
-        padding-left: 6rem;
-        padding-right: 6rem;
+        padding-left: 0rem !important;
+        padding-right: 0rem !important;
     }
-    .winnerSectionInner {
+    /* .winnerSectionInner {
         padding-left: 3rem;
         padding-right: 3rem;
+    } */
+    .badgeSection {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 
 .winnerSection {
+    max-width: 900px;
+    width: 100%;
     padding-top: 3rem;
     padding-bottom: 3rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    /* padding-left: 2rem;
+    padding-right: 2rem; */
     margin-left: auto;
     margin-right: auto;
 }
@@ -864,8 +889,8 @@ input[type=number] {
 .winnerSectionInner {
     padding-top: 2rem;
     padding-bottom: 2rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    /* padding-left: 1rem;
+    padding-right: 1rem; */
     background-color: transparent;
     display: flex;
     flex-direction: column;

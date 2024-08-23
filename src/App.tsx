@@ -10,8 +10,8 @@ import BtcVault from "./container/BtcVault"
 import EthVault from "./container/EthVault"
 import { QueryParamProvider } from 'use-query-params';
 import { WagmiConfig, createConfig, configureChains } from 'wagmi'
-import { mainnet, sepolia, cronos } from 'wagmi/chains'
-import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
+import { mainnet, sepolia, cronos, base } from 'wagmi/chains'
+import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet' 
 import { InjectedConnector } from 'wagmi/connectors/injected'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
@@ -23,7 +23,7 @@ import { TermsModal } from './components/TermsModal.tsx';
 const projectId = '7c7fff7dcdf68099b497f697a163e920'
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-    [mainnet, sepolia, cronos],
+    [mainnet, sepolia, cronos, base],
     [w3mProvider({ projectId })],
 )
 
@@ -90,7 +90,7 @@ export default function App() {
                                 position: 'fixed',
                                 margin: 'auto',
                                 width: '100%',
-                                height: 'inherit',
+                                height: '-webkit-fill-available',
                                 // right: '-100%',
                                 // bottom: '-100%',
                                 // top: '-100%',

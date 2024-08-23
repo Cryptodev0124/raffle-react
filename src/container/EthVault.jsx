@@ -36,13 +36,13 @@ const EthVault = () => {
   useEffect(() => {
     const switchChain = async () => {
       try {
-        switchNetwork?.(11155111)
+        switchNetwork?.(8453)
       } catch (e) {
         console.error(e)
       }
     }
     if (isConnected === true) {
-      if (chain.id !== 11155111)
+      if (chain.id !== 8453)
         switchChain();
     }
   }, [isConnected, chain?.id, switchNetwork])
@@ -169,7 +169,7 @@ const EthVault = () => {
     <main>
       <div className="GlobalContainer">
         {address ?
-          chain?.id === 11155111 ?
+          chain?.id === 8453 ?
             <div className="MainDashboard">
               <section className="ContactBox">
                 <>

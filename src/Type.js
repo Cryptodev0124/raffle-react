@@ -6,7 +6,7 @@ function Type() {
     <Typewriter
       options={{
         strings: [
-          "1 AND 30 CHANGE OF WINNING!",
+          "1 IN 30 CHANCE OF WINNING!",
         ],
         autoStart: true,
         loop: true,

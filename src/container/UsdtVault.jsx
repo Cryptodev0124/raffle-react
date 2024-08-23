@@ -40,13 +40,13 @@ const UsdtVault = () => {
   useEffect(() => {
     const switchChain = async () => {
       try {
-        switchNetwork?.(11155111)
+        switchNetwork?.(8453)
       } catch (e) {
         console.error(e)
       }
     }
     if (isConnected === true) {
-      if (chain.id !== 11155111)
+      if (chain.id !== 8453)
         switchChain();
     }
   }, [isConnected, chain?.id, switchNetwork])
@@ -91,7 +91,7 @@ const UsdtVault = () => {
         console.error(e)
       }
     }
-    if (isConnected === true && chain?.id === 11155111 && address && (confirming === false)) {
+    if (isConnected === true && chain?.id === 8453 && address && (confirming === false)) {
       FetchStakingData();
     }
   }, [isConnected, address, chain, confirming])
@@ -204,7 +204,7 @@ const UsdtVault = () => {
     <main>
       <div className="GlobalContainer">
         {address ?
-          chain?.id === 11155111 ?
+          chain?.id === 8453 ?
             <div className="MainDashboard">
               <section className="ContactBox">
                 <>

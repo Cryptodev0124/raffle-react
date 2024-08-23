@@ -6,7 +6,7 @@ import UsdtVault from "../container/UsdtVault"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { QueryParamProvider } from 'use-query-params';
 import { WagmiConfig, createConfig, configureChains } from 'wagmi'
-import { mainnet, sepolia } from 'wagmi/chains'
+import { mainnet, sepolia, base } from 'wagmi/chains'
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
 import { InjectedConnector } from 'wagmi/connectors/injected'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
@@ -17,7 +17,7 @@ import { Web3Modal } from "@web3modal/react";
 const projectId = '7c7fff7dcdf68099b497f697a163e920'
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [mainnet, sepolia],
+  [mainnet, sepolia, base],
   [w3mProvider({ projectId })],
 )
 
