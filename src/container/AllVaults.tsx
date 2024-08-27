@@ -39,7 +39,7 @@ const AllVaults = () => {
   const [tokenAmount, setTokenAmount] = useState(0);
   const [withdrawAmount, setWithdrawAmount] = useState(0);
   let [confirming, setConfirming] = useState(false);
-  const raffleAddress = "0x7B336E6026d176c89296e516c18819013b3db758";
+  const raffleAddress = "0x329633ED1Ca833d0F1577aEFFb8333bDB678B27f";
   const TokenAddress = "0x029C58A909fBe3d4BE85a24f414DDa923A3Fde0F";
 
   const { switchNetwork } = useSwitchNetwork()
@@ -443,6 +443,11 @@ const AllVaults = () => {
                           </button>
                         </div> */}
                       </div>
+                    </div>
+                    <div className="disclaimerSection">
+                      <p>
+                      *Disclaimer: Please note that the value of the IRA token is volatile, and the price per token may fluctuate before the end of each raffle round. As a result, the number of tokens you receive could differ from the advertised dollar value. You will receive 90% of the total tokens collected during that round.
+                      </p>
                     </div>
                   </section>
                 </>
