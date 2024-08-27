@@ -217,7 +217,8 @@
     display: flex;
     justify-content: space-between;
     padding: 10px 50px 10px 50px;
-    background: radial-gradient(306.12% 3126.18% at 16.67% 33.7%, #41308b 0%, #777fe9 84.12%, #8e4be6 100%);
+    /* background: radial-gradient(306.12% 3126.18% at 16.67% 33.7%, #41308b 0%, #777fe9 84.12%, #8e4be6 100%); */
+    background: #00000070;
     border-radius: 16px;
     margin-bottom: 20px;
 }
