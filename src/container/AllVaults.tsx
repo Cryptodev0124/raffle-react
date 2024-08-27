@@ -39,7 +39,7 @@ const AllVaults = () => {
   const [tokenAmount, setTokenAmount] = useState(0);
   const [withdrawAmount, setWithdrawAmount] = useState(0);
   let [confirming, setConfirming] = useState(false);
-  const raffleAddress = "0xa88ED3836D03f15538753F9B726e880aB99C2975";
+  const raffleAddress = "0x7B336E6026d176c89296e516c18819013b3db758";
   const TokenAddress = "0x029C58A909fBe3d4BE85a24f414DDa923A3Fde0F";
 
   const { switchNetwork } = useSwitchNetwork()
@@ -64,7 +64,7 @@ const AllVaults = () => {
   const [winningPools, setWinningPools] = useState('')
   const [winner, setWinner] = useState([])
   const [currentRound, setCurrentRound] = useState(1)
-  const [ticketLeft, setTicketLeft] = useState(5)
+  const [ticketLeft, setTicketLeft] = useState(30)
   const [requiedIraAmount, setIraAmount] = useState(0);
   const [userPurchased, setUserPurchased] = useState(0);
   const [latestWinner, setLatestWinner] = useState('');
@@ -302,7 +302,7 @@ const AllVaults = () => {
                         {!isApproved ?
                           <section className="LockBox">
                             {confirming === false ?
-                              Number(tokenBalance) > (Number(requiedIraAmount) * 1e18) ?
+                              Number(Number(tokenBalance)) > (Number(requiedIraAmount)) ?
                                 <>
                                   <button disabled={confirming === false ? false : true} onClick={() => onTokenAllowance()} className="LockButton">
                                     <p>APPROVE</p>
@@ -310,7 +310,7 @@ const AllVaults = () => {
                                 </>
                                 :
                                 <>
-                                  <p className='Text1'>You have no enough IRA now</p>
+                                  <p className='Text1'>You do not have enough IRA tokens</p>
                                   <button disabled={true} className="LockButton">
                                     <p>BUY TICKET</p>
                                   </button>
